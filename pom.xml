@@ -15,6 +15,7 @@
 	<description>tap-payment-api</description>
 	<properties>
 		<java.version>11</java.version>
+		<jacoco-version>0.8.6</jacoco-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -71,6 +72,51 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<dataFile>target/jacoco.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>target/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<systemPropertyVariables>
+						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+					</systemPropertyVariables>
+					<excludes>
+						<exclude>com/tappayment/api/boundary/helper/**</exclude>
+						<exclude>com/tappayment/api/boundary/mapper/**</exclude>
+						<exclude>com/tappayment/api/control/event/**</exclude>
+						<exclude>com/tappayment/api/entity/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

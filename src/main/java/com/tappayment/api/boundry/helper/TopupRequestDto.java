@@ -1,6 +1,7 @@
 package com.tappayment.api.boundry.helper;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TopupRequestDto {
 
     @NotNull(message="topupAmount cannot be missing")

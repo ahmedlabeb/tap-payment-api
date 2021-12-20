@@ -1,4 +1,4 @@
-package com.tappayment.api.boundry;
+package com.tappayment.api.boundry.helper;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
