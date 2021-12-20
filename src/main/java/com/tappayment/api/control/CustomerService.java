@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -46,7 +46,7 @@ public class CustomerService {
      * @return
      */
     private BigDecimal calculateCustomerTotalBalance(FeesDto feesDto, BigDecimal topupAmount, BigDecimal customerEntityTotalBalance) {
-        BigDecimal updatedTotalBalance = null;
+        BigDecimal updatedTotalBalance;
         if (feesDto != null) {
             updatedTotalBalance = customerEntityTotalBalance.add(topupAmount.subtract(feesDto.getAmount()));
         } else {
@@ -62,7 +62,6 @@ public class CustomerService {
      * @return
      */
     private CustomerEntity createNewCustomer(String customerId,String walletId, BigDecimal totalBalance) {
-        CustomerEntity savedCustomer = customerRepository.save(new CustomerEntity(customerId,walletId, totalBalance));
-        return savedCustomer;
+        return customerRepository.save(new CustomerEntity(customerId,walletId, totalBalance));
     }
 }
