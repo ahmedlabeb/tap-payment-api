@@ -10,6 +10,9 @@
 - apply command (maven clean install)
 - Start the server from the IDE , Server will be up and running on port 8080  , you can view the swagger through this URL   
   http://localhost:8080/swagger-ui/index.html#/  
+- you also can topup the user by using this curl request  
+  curl -X POST "http://localhost:8080/api/topup" -H "accept: */*" -H "Content-Type: application/json" -d "{\"topupAmount\":10.2,\"topupCurrency\":\"AED\",\"chargeId\":\"1\",\"customerDto\":{\"id\":\"1\",\"walletId\":\"123\"},\"feesDto\":{\"amount\":1.2,\"currency\":\"AED\"}}"
+  
 # What is Purpose of This service
  - This Service has only one API that can be used for topup customer, the Post request contain the wallet Id for customer and customer Id,if the customer is not exist in the DB then we will create a new customer and topup his balance.
  - Customer can have multiple wallet at his account 
