@@ -8,6 +8,7 @@
 # Steps to run the service 
 - start Mongo Compass on your machine 
 - apply command (maven clean install)
+- Note that Mongo DB is running on the default localhost ( localhost:27017 ) which is included by default in the spring mongo DB configuration 
 - Start the server from the IDE , Server will be up and running on port 8080  , you can view the swagger through this URL   
   http://localhost:8080/swagger-ui/index.html#/  
 - you also can topup the user by using this curl request  
